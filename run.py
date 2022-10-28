@@ -101,7 +101,7 @@ def run():
         args.writer = writer
         args.logger = logger
         args.logger.info(args)
-        print(args.version, args.test)
+        print(args.version)
         # main(args)
         main_search(args)
 
