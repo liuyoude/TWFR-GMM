@@ -1,0 +1,103 @@
+version: twfr-gmm
+description: Time-weighted Frequency Domain Audio Representation (TWFR) with GMM Estimator for  Anomalous Sound Detection
+# filepath
+root_dir: ../../data/dcase2022dataset
+train_dirs:
+  - ../../data/dcase2022dataset/dev_data/fan/train
+  - ../../data/dcase2022dataset/dev_data/slider/train
+  - ../../data/dcase2022dataset/dev_data/valve/train
+  - ../../data/dcase2022dataset/dev_data/ToyCar/train
+  - ../../data/dcase2022dataset/dev_data/ToyTrain/train
+  - ../../data/dcase2022dataset/dev_data/bearing/train
+  - ../../data/dcase2022dataset/dev_data/gearbox/train
+add_train_dirs:
+  - ../../data/dcase2022dataset/eval_data/fan/train
+  - ../../data/dcase2022dataset/eval_data/slider/train
+  - ../../data/dcase2022dataset/eval_data/valve/train
+  - ../../data/dcase2022dataset/eval_data/ToyCar/train
+  - ../../data/dcase2022dataset/eval_data/ToyTrain/train
+  - ../../data/dcase2022dataset/eval_data/bearing/train
+  - ../../data/dcase2022dataset/eval_data/gearbox/train
+valid_dirs:
+  - ../../data/dcase2022dataset/dev_data/fan/test
+  - ../../data/dcase2022dataset/dev_data/slider/test
+  - ../../data/dcase2022dataset/dev_data/valve/test
+  - ../../data/dcase2022dataset/dev_data/ToyCar/test
+  - ../../data/dcase2022dataset/dev_data/ToyTrain/test
+  - ../../data/dcase2022dataset/dev_data/bearing/test
+  - ../../data/dcase2022dataset/dev_data/gearbox/test
+test_dirs:
+  - ../../data/eval_dataset/fan/test
+  - ../../data/eval_dataset/bearing/test
+  - ../../data/eval_dataset/slider/test
+  - ../../data/eval_dataset/valve/test
+  - ../../data/eval_dataset/ToyCar/test
+  - ../../data/eval_dataset/ToyTrain/test
+  - ../../data/eval_dataset/gearbox/test
+# audio
+sr: 16000
+# train
+seed: 526 # 41
+decision_threshold: 0.9
+save: True
+# components of gmm
+gmm_ns:
+  mean-gmm:
+    ToyCar: 2,
+    ToyTrain: 2,
+    bearing: 2,
+    fan: 2,
+    gearbox: 2,
+    slider: 2,
+    valve: 1,
+  max-gmm:
+    ToyCar: 2,
+    ToyTrain: 2,
+    bearing: 2,
+    fan: 2,
+    gearbox: 2,
+    slider: 1,
+    valve: 2,
+  twfr-gmm:
+    ToyCar: 2,
+    ToyTrain: 2,
+    bearing: 2,
+    fan: 2,
+    gearbox: 2,
+    slider: 1,
+    valve: 2,
+  smote-twfr-gmm:
+    ToyCar: 2,
+    ToyTrain: 2,
+    bearing: 2,
+    fan: 2,
+    gearbox: 2,
+    slider: 1,
+    valve: 2,
+# decay of gwrp
+gwrp_decays:
+  twfr-gmm:
+    ToyCar: 1.00,
+    ToyTrain: 0.92,
+    bearing: 1.00,
+    fan: 1.00,
+    gearbox: 1.00,
+    slider: 0.88,
+    valve: 0.41
+  smote-twfr-gmm:
+    ToyCar: 1.00,
+    ToyTrain: 0.92,
+    bearing: 1.00,
+    fan: 1.00,
+    gearbox: 1.00,
+    slider: 0.88,
+    valve: 0.41
+# use smote or not
+smotes:
+  ToyCar: False
+  ToyTrain: False
+  bearing: False
+  fan: False
+  gearbox: False
+  slider: False
+  valve: False
