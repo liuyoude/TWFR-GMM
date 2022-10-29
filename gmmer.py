@@ -268,14 +268,8 @@ class GMMer(object):
             machine = train_dir.split('/')[-2]
             machine_list.append(machine)
         for machine in machine_list:
-            best_metrics[machine] = {
-                'avg_auc_s': 0,
-                'avg_auc_t': 0,
-                'avg_p_auc': 0,
-            }
+            best_metrics[machine] = {}
             best_sum_metrics[machine] = 0
-            best_gwrp_decays[machine] = 0
-            best_gmm_n[machine] = gmm_ns[0]
         result_dir = os.path.join('./results', self.args.version)
         os.makedirs(result_dir, exist_ok=True)
         for gmm_n in gmm_ns:
@@ -285,10 +279,10 @@ class GMMer(object):
                 csv_lines = []
                 sum_auc_s, sum_auc_t, sum_pauc, num, total_time = 0, 0, 0, 0, 0
                 h_sum_auc_s, h_sum_auc_t, h_sum_pauc = 0, 0, 0
-                print('\n' + '=' * 20)
+                self.logger.info('\n' + '=' * 20)
                 for index, (target_dir, train_dir) in enumerate(zip(sorted(valid_dirs), sorted(train_dirs))):
                     time.sleep(1)
-                    start = time.perf_counter()
+                    time_start = time.perf_counter()
                     machine_type = target_dir.split('/')[-2]
                     # result csv
                     machine_section_list = utils.get_machine_section_list(target_dir)
@@ -297,11 +291,11 @@ class GMMer(object):
                     performance = []
                     for section_str in machine_section_list:
                         # train GMM
-                        print(f'[{machine_type}|{section_str}] Fit GMM-{gmm_n}...')
+                        self.logger.info(f'[{machine_type}|{section_str}|gmm_n={gmm_n}|decay={decay:.2f}] Fit GMM-{gmm_n}...')
                         s_train_files = utils.get_filename_list(train_dir, pattern=f'{section_str}_source_*')
                         t_train_files = utils.get_filename_list(train_dir, pattern=f'{section_str}_target_*')
                         train_files = s_train_files + t_train_files
-                        print(f'[decay={decay:.2f}] number of {section_str} files: {len(train_files)}')
+                        self.logger.info(f'number of {section_str} files: {len(train_files)}')
                         features = self.feature_extractor.extract(train_files) if not use_smote else \
                             self.feature_extractor.smote_extract(s_train_files, t_train_files)
                         gmm = self.fit_GMM(features, n_components=gmm_n)
@@ -329,9 +323,9 @@ class GMMer(object):
                     h_sum_auc_t += h_mean_auc_t
                     h_sum_pauc += h_mean_p_auc
                     num += 1
-                    time_nedded = time.perf_counter() - start
+                    time_nedded = time.perf_counter() - time_start
                     total_time += time_nedded
-                    print(f'[decay={decay:.2f}] Test {machine_type}\tcost {time_nedded:.2f} sec\tavg_auc_s: {mean_auc_s:.3f}\t'
+                    self.logger.info(f'[gmm_n={gmm_n}|decay={decay:.2f}] Test {machine_type}\tcost {time_nedded:.2f} sec\tavg_auc_s: {mean_auc_s:.3f}\t'
                                      f'avg_auc_t: {mean_auc_t:.3f}\tavg_pauc: {mean_p_auc:.3f}')
                     # best results on h_mean_auc_s + h_mean_auc_t + h_mean_p_auc
                     sum_metrics = h_mean_auc_s + h_mean_auc_t + h_mean_p_auc
@@ -353,7 +347,7 @@ class GMMer(object):
                 print(f'Total test time: {total_time:.2f} sec')
                 avg_auc_s, avg_auc_t, avg_pauc = sum_auc_s / num, sum_auc_t / num, sum_pauc / num
                 h_avg_auc_s, h_avg_auc_t, h_avg_pauc = h_sum_auc_s / num, h_sum_auc_t / num, h_sum_pauc / num
-                print(f'h_avg_auc_s: {h_avg_auc_s:.3f}\th_avg_auc_t: {h_avg_auc_t:.3f}\th_avg_pauc: {h_avg_pauc:.3f}')
+                self.logger.info(f'h_avg_auc_s: {h_avg_auc_s:.3f}\th_avg_auc_t: {h_avg_auc_t:.3f}\th_avg_pauc: {h_avg_pauc:.3f}')
         # record searching result
         result_path = os.path.join(result_dir, f'result-gmm-{gmm_ns}.csv')
         csv_lines = []
@@ -365,7 +359,7 @@ class GMMer(object):
             p_auc = best_metrics[machine]['avg_p_auc']
             decay = best_gwrp_decays[machine]
             gmm_n = best_gmm_n[machine]
-            csv_lines.append([f'gmm_n={gmm_n:2d}', f'decay={decay:.2f}', f'{auc_s:.4f}', f'{auc_t:.4f}', f'{p_auc:.4f}'])
+            csv_lines.append([f'gmm_n={gmm_n}', f'decay={decay:.2f}', f'{auc_s:.4f}', f'{auc_t:.4f}', f'{p_auc:.4f}'])
             csv_lines.append([])
             sum_auc_s += auc_s
             sum_auc_t += auc_t

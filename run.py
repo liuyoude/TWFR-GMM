@@ -88,22 +88,17 @@ def run():
     args = parser.parse_args()
     # random seed
     if args.seed: utils.setup_seed(args.seed)
-    versions = ['mean-gmm', 'max-gmm', 'twfr-gmm', 'smote-twfr-gmm']
-    poolings = ['mean', 'max', 'gwrp', 'gwrp']
-    for version, pooing in zip(versions, poolings):
-        args.pool_type = pooing
-        args.version = version
-        # init logger and writer
-        log_dir = f'runs/{args.version}'
-        writer = SummaryWriter(log_dir=log_dir)
-        logger = utils.get_logger(filename=os.path.join(log_dir, 'running.log'))
-        # run
-        args.writer = writer
-        args.logger = logger
-        args.logger.info(args)
-        print(args.version)
-        # main(args)
-        main_search(args)
+    # init logger and writer
+    log_dir = f'runs/{args.version}'
+    writer = SummaryWriter(log_dir=log_dir)
+    logger = utils.get_logger(filename=os.path.join(log_dir, 'running.log'))
+    # run
+    args.writer = writer
+    args.logger = logger
+    args.logger.info(args)
+    print(args.version)
+    # main(args)
+    main_search(args)
 
 
 if __name__ == '__main__':

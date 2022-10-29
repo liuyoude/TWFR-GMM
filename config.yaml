@@ -40,6 +40,7 @@ sr: 16000
 seed: 526 # 41
 decision_threshold: 0.9
 save: True
+pool_type: gwrp # mean, max, gwrp
 # components of gmm
 gmm_ns:
   mean-gmm:
