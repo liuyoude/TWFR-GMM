@@ -68,13 +68,13 @@ def main_search(args):
     elif args.version == 'twfr-gmm':
         gmmer.search(train_dirs=sorted(args.train_dirs),
                      valid_dirs=sorted(args.valid_dirs),
-                     start=0, end=101, step=1,
+                     start=0, end=102, step=2,
                      gmm_ns=[1, 2, 4, 8],
                      use_smote=False)
     elif args.version == 'smote-twfr-gmm':
         gmmer.search(train_dirs=sorted(args.train_dirs),
                      valid_dirs=sorted(args.valid_dirs),
-                     start=0, end=101, step=1,
+                     start=0, end=102, step=2,
                      gmm_ns=[1, 2, 4, 8],
                      use_smote=True)
 
@@ -88,7 +88,6 @@ def run():
     args = parser.parse_args()
     # random seed
     if args.seed: utils.setup_seed(args.seed)
-    # init logger and writer
     log_dir = f'runs/{args.version}'
     writer = SummaryWriter(log_dir=log_dir)
     logger = utils.get_logger(filename=os.path.join(log_dir, 'running.log'))
@@ -97,8 +96,8 @@ def run():
     args.logger = logger
     args.logger.info(args)
     print(args.version)
-    # main(args)
-    main_search(args)
+    main(args)
+    # main_search(args)
 
 
 if __name__ == '__main__':

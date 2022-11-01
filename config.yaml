@@ -44,61 +44,61 @@ pool_type: gwrp # mean, max, gwrp
 # components of gmm
 gmm_ns:
   mean-gmm:
-    ToyCar: 2,
-    ToyTrain: 2,
-    bearing: 2,
-    fan: 2,
-    gearbox: 2,
-    slider: 2,
-    valve: 1,
+    ToyCar: 2
+    ToyTrain: 2
+    bearing: 2
+    fan: 2
+    gearbox: 2
+    slider: 2
+    valve: 1
   max-gmm:
-    ToyCar: 2,
-    ToyTrain: 2,
-    bearing: 2,
+    ToyCar: 2
+    ToyTrain: 2
+    bearing: 2
     fan: 2,
-    gearbox: 2,
-    slider: 1,
-    valve: 2,
+    gearbox: 4
+    slider: 8
+    valve: 2
   twfr-gmm:
-    ToyCar: 2,
-    ToyTrain: 2,
-    bearing: 2,
-    fan: 2,
-    gearbox: 2,
-    slider: 1,
-    valve: 2,
+    ToyCar: 2
+    ToyTrain: 4
+    bearing: 2
+    fan: 2
+    gearbox: 4
+    slider: 1
+    valve: 2
   smote-twfr-gmm:
-    ToyCar: 2,
-    ToyTrain: 2,
-    bearing: 2,
-    fan: 2,
-    gearbox: 2,
-    slider: 1,
-    valve: 2,
+    ToyCar: 1
+    ToyTrain: 4
+    bearing: 2
+    fan: 2
+    gearbox: 2
+    slider: 1
+    valve: 2
 # decay of gwrp
 gwrp_decays:
   twfr-gmm:
-    ToyCar: 1.00,
-    ToyTrain: 0.92,
-    bearing: 1.00,
-    fan: 1.00,
-    gearbox: 1.00,
-    slider: 0.88,
-    valve: 0.41
+    ToyCar: 1.00
+    ToyTrain: 0.90
+    bearing: 1.00
+    fan: 1.00
+    gearbox: 0.98
+    slider: 0.88
+    valve: 0.46
   smote-twfr-gmm:
-    ToyCar: 1.00,
-    ToyTrain: 0.92,
-    bearing: 1.00,
-    fan: 1.00,
-    gearbox: 1.00,
-    slider: 0.88,
-    valve: 0.41
+    ToyCar: 1.00
+    ToyTrain: 0.90
+    bearing: 0.80
+    fan: 1.00
+    gearbox: 1.00
+    slider: 0.90
+    valve: 0.46
 # use smote or not
 smotes:
-  ToyCar: False
+  ToyCar: True
   ToyTrain: False
-  bearing: False
-  fan: False
-  gearbox: False
-  slider: False
+  bearing: True
+  fan: True
+  gearbox: True
+  slider: True
   valve: False

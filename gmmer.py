@@ -75,7 +75,7 @@ class GMMer(object):
             if self.args.pool_type == 'gwrp':
                 decay = self.args.gwrp_decays[self.version][machine_type]
                 self.feature_extractor.args.decay = decay
-            gmm_n = gmm_n if not use_search else self.args.gmm_ns[self.version][machine_type]
+            gmm_n = gmm_n if not use_search else int(self.args.gmm_ns[self.version][machine_type])
             if use_search and self.version == 'smote-twfr-gmm':
                 use_smote = self.args.smotes[machine_type]
             # result csv
@@ -202,7 +202,7 @@ class GMMer(object):
             if self.args.pool_type == 'gwrp':
                 decay = self.args.gwrp_decays[machine_type]
                 self.feature_extractor.args.decay = decay
-            gmm_n = gmm_n if not use_search else self.args.gmm_ns[machine_type]
+            gmm_n = gmm_n if not use_search else int(self.args.gmm_ns[self.version][machine_type])
             if use_search and self.version == 'smote-twfr-gmm':
                 use_smote = self.args.smotes[machine_type]
             # get machine list
