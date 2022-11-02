@@ -200,7 +200,7 @@ class GMMer(object):
         for index, (target_dir, train_dir) in enumerate(zip(sorted(test_dirs), sorted(train_dirs))):
             machine_type = target_dir.split('/')[-2]
             if self.args.pool_type == 'gwrp':
-                decay = self.args.gwrp_decays[machine_type]
+                decay = self.args.gwrp_decays[self.version][machine_type]
                 self.feature_extractor.args.decay = decay
             gmm_n = gmm_n if not use_search else int(self.args.gmm_ns[self.version][machine_type])
             if use_search and self.version == 'smote-twfr-gmm':
@@ -220,8 +220,6 @@ class GMMer(object):
                     features = self.feature_extractor.extract(train_files)
                 else:
                     features = self.feature_extractor.smote_extract(s_train_files, t_train_files)
-                if self.args.norm:
-                    features = F.normalize(torch.from_numpy(features), dim=1).numpy()
                 gmm = self.fit_GMM(features, n_components=gmm_n)
                 #
                 test_files = utils.get_eval_file_list(target_dir, section_str)
@@ -232,8 +230,6 @@ class GMMer(object):
                 y_pred = [0. for _ in test_files]
                 for file_idx, file_path in enumerate(test_files):
                     test_feature = self.feature_extractor.extract([file_path])
-                    if self.args.norm:
-                        test_feature = F.normalize(torch.from_numpy(test_feature), dim=1).numpy()
                     y_pred[file_idx] = - np.max(gmm._estimate_log_prob(test_feature))
                     anomaly_score_list.append([os.path.basename(file_path), y_pred[file_idx]])
                     if save: utils.save_csv(csv_path, anomaly_score_list)
