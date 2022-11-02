@@ -6,6 +6,7 @@ Time-weighted Frequency Domain Audio Representation (TWFR) with GMM Estimator fo
 
 ## Results on DCASE2022 dataset
 harmonic mean of AUC-S (AUC with Source domain), AUC-T(AUC with Target domain) and pAUC
+
 AUC-S(%)/AUC-T(%)/pAUC(%) in Table
 ### development dataset
 | Method          | ToyCar  | ToyTrain | Bearing |  Fan    | Gearbox | Slider  |  Valve  |  Average  |
