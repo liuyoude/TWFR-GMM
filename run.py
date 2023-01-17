@@ -96,8 +96,9 @@ def run():
     args.logger = logger
     args.logger.info(args)
     print(args.version)
-    main(args)
+    # search parameters
     # main_search(args)
+    main(args)
 
 
 if __name__ == '__main__':
