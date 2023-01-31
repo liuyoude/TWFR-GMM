@@ -7,7 +7,7 @@ Time-weighted Frequency Domain Audio Representation (TWFR) with GMM Estimator fo
 ## Results on DCASE2022 dataset
 harmonic mean of AUC-S (AUC with Source domain), AUC-T(AUC with Target domain) and pAUC
 
-AUC-S(%)/AUC-T(%)/pAUC(%) in Table
+`AUC-S(%)/AUC-T(%)/pAUC(%)` in Table
 ### development dataset
 | Method          | ToyCar  | ToyTrain | Bearing |  Fan    | Gearbox | Slider  |  Valve  |  Average  |
 | --------------- | :-----: |  :----:  | :----:  | :----:  |:----:   | :----:  | :----:  |   :----:  |
@@ -28,6 +28,7 @@ In addition to the result of weighted mean of Mean-GMM and Max-GMM, we also show
 + **Concate(Mean,Max)-GMM**: Concatenating mean pooling representation and max pooling representation as input feature with GMM for ASD
 + **Weight(Mean,Max)-GMM**: Weighted mean of mean pooling and max pooling representation as input feature with GMM for ASD (the selection of this weight for each machine type is the same as $r$ in TWFR-GMM)
 
+`AUC(%)((AUC-S+AUC-T)/2)/pAUC(%)` in Table
 ### Results on development set
 
 | Method             | ToyCar  | ToyTrain |  Fan    | Gearbox | Bearing | Slider  |  Valve  |  Average  |
