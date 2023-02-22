@@ -1,5 +1,5 @@
 # TWFR-GMM
-Time-weighted Frequency Domain Audio Representation (TWFR) with GMM Estimator for  Anomalous Sound Detection
+Time-weighted Frequency Domain Audio Representation with GMM Estimator for  Anomalous Sound Detection (ICASSP2023 Accept)
 
 ![structure](./structure.png)
 
