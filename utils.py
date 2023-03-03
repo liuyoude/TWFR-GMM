@@ -405,7 +405,7 @@ def setup_seed(seed):
 
 
 if __name__ == '__main__':
-    # get_attributes('./dcase2022dataset')
+    get_attributes('./dcase2022dataset')
     # print(get_file_attribute('ToyTrain/test/section_00_target_test_normal_0008_car_C1_spd_6_mic_1_noise_2.wav'))
     # atts = get_attributes('./dcase2022dataset')
     # print(len(atts), sorted(atts))
@@ -417,11 +417,3 @@ if __name__ == '__main__':
     # print(a)
     # a = np.array([[1, 2], [4, 3]])
     # out = gwrp(a, decay=1)
-    print(1)
-    print(1)
-    print(1)
-    print(1)
-    print(1)
-    print(1)
-    print(1)
-    print(1)

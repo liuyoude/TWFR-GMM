@@ -3,6 +3,8 @@ Time-weighted Frequency Domain Audio Representation (TWFR) with GMM Estimator fo
 
 ![structure](./structure.png)
 
+# Code
+The process code for GMM estimator (gmmer.py) will update soon...
 
 ## Results on DCASE2022 dataset
 harmonic mean of AUC-S (AUC with Source domain), AUC-T(AUC with Target domain) and pAUC
