@@ -2,4 +2,4 @@ __pycache__/
 .idea
 evaluator
 results
-gmmer.py
+#gmmer.py

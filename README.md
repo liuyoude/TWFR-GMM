@@ -3,9 +3,6 @@ Time-weighted Frequency Domain Audio Representation with GMM Estimator for  Anom
 
 ![structure](./structure.png)
 
-# Code
-The process code for GMM estimator (gmmer.py) will update soon...
-
 ## Results on DCASE2022 dataset
 harmonic mean of AUC-S (AUC with Source domain), AUC-T(AUC with Target domain) and pAUC
 
@@ -46,3 +43,6 @@ In addition to the result of weighted mean of Mean-GMM and Max-GMM, we also show
 | Concate(Mean,max)-GMM        |88.93/76.86        |53.63/51.87        |48.52/**51.79**|**80.80**/57.21|68.80/55.45        |75.69/62.45|71.41/56.25|69.68/58.84|
 | Weight(Mean,Max)-GMM         |65.56/57.56        |54.95/51.50        |45.22/49.57    |68.65/49.58    |59.55/51.57        |**79.63**/**64.59**|79.90/**65.01**|64.78/55.63|
 | TWFR-GMM                     |**89.05**/**79.11**|**62.10**/**52.96**|**50.56**/51.73|79.03/**58.99**|**71.78**/**58.99**|75.52/60.34|**82.92**/64.17|**72.99**/**60.90**|
+
+## Todo
++ select weight of gwrp and components of gmm only using normal data
